@@ -1,0 +1,24 @@
+-- 카테고리 별 도서 판매량 집계하기
+-- 프로그래머스 기초 (⭐⭐)
+-- 문제 링크: https://school.programmers.co.kr/learn/courses/30/lessons/144855
+-- 작성자: 김효준
+-- 작성일: 2026. 06. 16. 16:23:49
+
+-- 코드를 입력하세요
+SELECT A.CATEGORY, SUM(B.SALES) AS TOTAL_SALES
+FROM BOOK A
+INNER JOIN 
+(SELECT *
+FROM BOOK_SALES
+WHERE YEAR(SALES_DATE) = 2022 AND MONTH(SALES_DATE) = 01) AS B
+ON A.BOOK_ID = B.BOOK_ID
+GROUP BY CATEGORY
+ORDER BY CATEGORY
+
+
+
+# SELECT BOOK_ID, SALES
+# FROM BOOK_SALES
+# WHERE YEAR(SALES_DATE) = 2022 AND MONTH(SALES_DATE) = 01
+# GROUP BY BOOK_ID
+# ORDER BY BOOK_ID
