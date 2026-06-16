@@ -1,0 +1,23 @@
+-- 오프라인/온라인 판매 데이터 통합하기
+-- 프로그래머스 중급 (⭐⭐⭐)
+-- 문제 링크: https://school.programmers.co.kr/learn/courses/30/lessons/131537
+-- 작성자: 김효준
+-- 작성일: 2026. 06. 16. 16:47:17
+
+-- 코드를 입력하세요
+SELECT
+    DATE_FORMAT(DATE(SALES_DATE), '%Y-%m-%d') AS SALES_DATE,
+    PRODUCT_ID,
+    USER_ID,
+    SALES_AMOUNT
+FROM ONLINE_SALE
+WHERE YEAR(SALES_DATE) = 2022 AND MONTH(SALES_DATE) = 03
+UNION ALL
+SELECT
+    DATE_FORMAT(DATE(SALES_DATE), '%Y-%m-%d') AS SALES_DATE,
+    PRODUCT_ID,
+    NULL AS USER_ID,
+    SALES_AMOUNT
+FROM OFFLINE_SALE
+WHERE YEAR(SALES_DATE) = 2022 AND MONTH(SALES_DATE) = 03
+ORDER BY SALES_DATE, PRODUCT_ID, USER_ID
